@@ -84,7 +84,7 @@ impl Jitter {
     #[cfg(feature = "jitter")]
     pub fn up_to(max: Duration) -> Jitter {
         Jitter {
-            min: Nanos::from(0),
+            min: Nanos::from(0u64),
             max: max.into(),
         }
     }

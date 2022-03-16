@@ -50,7 +50,7 @@ use std::prelude::v1::*;
 use std::convert::TryInto;
 use std::fmt::Debug;
 use std::ops::Add;
-use std::sync::atomic::AtomicU64;
+use std::sync::atomic::AtomicU32;
 use std::sync::atomic::Ordering;
 use std::sync::Arc;
 use std::time::Duration;
@@ -126,13 +126,13 @@ impl Add<Nanos> for Duration {
 /// Clones of this clock will all show the same time, even if the original advances.
 #[derive(Debug, Clone, Default)]
 pub struct FakeRelativeClock {
-    now: Arc<AtomicU64>,
+    now: Arc<AtomicU32>,
 }
 
 impl FakeRelativeClock {
     /// Advances the fake clock by the given amount.
     pub fn advance(&self, by: Duration) {
-        let by: u64 = by
+        let by: u32 = by
             .as_nanos()
             .try_into()
             .expect("Can not represent times past ~584 years");

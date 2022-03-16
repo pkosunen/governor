@@ -77,6 +77,12 @@ impl From<u64> for Nanos {
     }
 }
 
+impl From<u32> for Nanos {
+    fn from(u: u32) -> Self {
+        Nanos(u as u64)
+    }
+}
+
 impl From<Nanos> for u64 {
     fn from(n: Nanos) -> Self {
         n.0
